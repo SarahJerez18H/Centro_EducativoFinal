@@ -41,7 +41,6 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jLblTelMovil = new javax.swing.JLabel();
         jTxtTelMovilS = new javax.swing.JTextField();
         jLblFechaNac = new javax.swing.JLabel();
-        jTxtFechaNacS = new javax.swing.JTextField();
         jTxtCuiS = new javax.swing.JTextField();
         jLblCui = new javax.swing.JLabel();
         jLblpass = new javax.swing.JLabel();
@@ -55,6 +54,7 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jBtnEliminarS = new javax.swing.JButton();
         jTxtTelCasaS = new javax.swing.JTextField();
         jTxtEmailS = new javax.swing.JTextField();
+        jDCFechanac = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -112,8 +112,6 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
 
         jLblFechaNac.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLblFechaNac.setText("Fecha Nac.");
-
-        jTxtFechaNacS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
         jTxtCuiS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
@@ -184,24 +182,6 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblFechaNac)
-                            .addComponent(jLblTelCasa)
-                            .addComponent(jLblpass))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTxtFechaNacS, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                            .addComponent(jPsfContraS))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblCui)
-                            .addComponent(jLblTelMovil)
-                            .addComponent(jLblCodigoAD))
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtCuiS, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtCodigoAdmS, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLblNombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -232,7 +212,25 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
                                 .addComponent(jTxtTelCasaS, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(155, 155, 155)
                                 .addComponent(jTxtTelMovilS, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTxtDireccionS, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jTxtDireccionS, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblFechaNac)
+                            .addComponent(jLblTelCasa)
+                            .addComponent(jLblpass))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDCFechanac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPsfContraS, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblCui)
+                            .addComponent(jLblTelMovil)
+                            .addComponent(jLblCodigoAD))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtCuiS, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtCodigoAdmS, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -270,7 +268,9 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
                             .addComponent(jLblTelMovil)
                             .addComponent(jTxtTelCasaS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLblCui))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLblCui)
+                            .addComponent(jDCFechanac, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -284,9 +284,7 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLblFechaNac)
                                 .addGap(5, 5, 5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTxtFechaNacS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtCuiS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jTxtCuiS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
@@ -392,6 +390,7 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
     public javax.swing.JButton jBtnActualizarS;
     public javax.swing.JButton jBtnEliminarS;
     public javax.swing.JButton jBtnGuardarS;
+    public com.toedter.calendar.JDateChooser jDCFechanac;
     private javax.swing.JLabel jLblApellido;
     private javax.swing.JLabel jLblCodigo;
     private javax.swing.JLabel jLblCodigoAD;
@@ -413,7 +412,6 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
     public javax.swing.JTextField jTxtCuiS;
     public javax.swing.JTextField jTxtDireccionS;
     public javax.swing.JTextField jTxtEmailS;
-    public javax.swing.JTextField jTxtFechaNacS;
     public javax.swing.JTextField jTxtNombreS;
     public javax.swing.JTextField jTxtTelCasaS;
     public javax.swing.JTextField jTxtTelMovilS;

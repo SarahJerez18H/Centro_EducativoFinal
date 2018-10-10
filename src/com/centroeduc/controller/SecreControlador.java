@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.JFrmSecre;
@@ -82,7 +85,12 @@ public class SecreControlador implements ActionListener, MouseListener {
      
      public void guardarSecre() {
         String mensaje = null;
-
+        
+        String anio = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
         datosS.setCodigo(this.logica.jTxtCodigoS.getText());
         datosS.setNombre(this.logica.jTxtNombreS.getText());
         datosS.setApellido(this.logica.jTxtApellidoS.getText());
@@ -90,7 +98,7 @@ public class SecreControlador implements ActionListener, MouseListener {
         datosS.setEmail(this.logica.jTxtEmailS.getText());        
         datosS.setTelCasa(Integer.parseInt(this.logica.jTxtTelCasaS.getText()));
         datosS.setTelMovil(Integer.parseInt(this.logica.jTxtTelMovilS.getText()));
-        datosS.setFechanac(this.logica.jTxtFechaNacS.getText());
+        datosS.setFechanac(fechaseleccionada);
         datosS.setCui(Long.parseLong(this.logica.jTxtCuiS.getText()));
         Adm.setCodigo(this.logica.jTxtCodigoAdmS.getText());
         datosS.setPass(this.logica.jPsfContraS.getText());
@@ -107,13 +115,18 @@ public class SecreControlador implements ActionListener, MouseListener {
       public void editarSecre(){
          String mensaje = null;  
          
+        String anio = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+         
         datosS.setNombre(this.logica.jTxtNombreS.getText());
         datosS.setApellido(this.logica.jTxtApellidoS.getText());
         datosS.setDireccion(this.logica.jTxtDireccionS.getText());
         datosS.setEmail(this.logica.jTxtEmailS.getText());        
         datosS.setTelCasa(Integer.parseInt(this.logica.jTxtTelCasaS.getText()));
         datosS.setTelMovil(Integer.parseInt(this.logica.jTxtTelMovilS.getText()));
-        datosS.setFechanac(this.logica.jTxtFechaNacS.getText());
+        datosS.setFechanac(fechaseleccionada);
         datosS.setCui(Long.parseLong(this.logica.jTxtCuiS.getText()));
         Adm.setCodigo(this.logica.jTxtCodigoAdmS.getText());
         datosS.setPass(this.logica.jPsfContraS.getText());
@@ -177,7 +190,8 @@ public class SecreControlador implements ActionListener, MouseListener {
            logica.jTxtEmailS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),4).toString());
            logica.jTxtTelCasaS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),5).toString());
            logica.jTxtTelMovilS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),6).toString());
-           logica.jTxtFechaNacS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),7).toString());
+           Date fechaSelect = Date.valueOf(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(), 7).toString());
+            logica.jDCFechanac.setDate(fechaSelect);
            logica.jTxtCuiS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),8).toString());
            logica.jTxtCodigoAdmS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),9).toString());
            logica.jPsfContraS.setText(logica.jTblSecre.getValueAt(logica.jTblSecre.getSelectedRow(),10).toString());
@@ -187,6 +201,9 @@ public class SecreControlador implements ActionListener, MouseListener {
 
     
     public void limpiarControles() {
+        
+         Calendar clear = new GregorianCalendar();
+        logica.jDCFechanac.setCalendar(clear);
         logica.jTxtCodigoS.setText(null);
         logica.jTxtNombreS.setText(null);
         logica.jTxtApellidoS.setText(null);
@@ -194,7 +211,7 @@ public class SecreControlador implements ActionListener, MouseListener {
         logica.jTxtEmailS.setText(null);
         logica.jTxtTelCasaS.setText(null);
         logica.jTxtTelMovilS.setText(null);
-        logica.jTxtFechaNacS.setText(null);
+        //logica.jTxtFechaNacS.setText(null);
         logica.jTxtCuiS.setText(null);
         logica.jPsfContraS.setText(null);
         logica.jTxtCodigoS.requestFocus();

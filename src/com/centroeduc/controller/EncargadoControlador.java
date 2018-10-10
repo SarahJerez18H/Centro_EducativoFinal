@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultEditorKit;
@@ -89,6 +92,13 @@ public class EncargadoControlador implements ActionListener, MouseListener{
         public void guardarEncargado(){
             
             String mensaje = null;
+            
+            
+        String anio = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+            
 
             encargado.setCodigo(this.logica.jTxtCodigoE.getText());
             encargado.setNombre(this.logica.jTxtNombreE.getText());
@@ -97,7 +107,8 @@ public class EncargadoControlador implements ActionListener, MouseListener{
             encargado.setEmail(this.logica.jTxtEmailE.getText());
             encargado.setTelCasa(Integer.parseInt(this.logica.jTxtTelCasaE.getText()));
             encargado.setTelMovil(Integer.parseInt(this.logica.jTxtTelMovilE.getText()));
-            encargado.setFechanac(this.logica.jTxtFechaNacE.getText());
+            //encargado.setFechanac(this.logica.jTxtFechaNacE.getText());
+            encargado.setFechanac(fechaseleccionada);
             encargado.setCui(Long.parseLong(this.logica.jTxtCuiE.getText()));              
             secre.setCodigo(this.logica.jTxtCodS.getText());
             encargado.setEstado(1);
@@ -113,13 +124,20 @@ public class EncargadoControlador implements ActionListener, MouseListener{
         public void editarEncargado(){
             String mensaje = null;         
             
+        String anio = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+            
+        
             encargado.setNombre(this.logica.jTxtNombreE.getText());
             encargado.setApellido(this.logica.jTxtApellidoE.getText());
             encargado.setDireccion(this.logica.jTxtDireccionE.getText());
             encargado.setEmail(this.logica.jTxtEmailE.getText());
             encargado.setTelCasa(Integer.parseInt(this.logica.jTxtTelCasaE.getText()));
             encargado.setTelMovil(Integer.parseInt(this.logica.jTxtTelMovilE.getText()));
-            encargado.setFechanac(this.logica.jTxtFechaNacE.getText());
+            //encargado.setFechanac(this.logica.jTxtFechaNacE.getText());
+            encargado.setFechanac(fechaseleccionada);            
             encargado.setCui(Long.parseLong(this.logica.jTxtCuiE.getText()));
             secre.setCodigo(this.logica.jTxtCodS.getText());           
             encargado.setCodigo(this.logica.jTxtCodigoE.getText());            
@@ -173,6 +191,7 @@ public class EncargadoControlador implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        
             if(e.getSource() == logica.jTblEncargado){
                 logica.jTxtCodigoE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),0).toString());
                 logica.jTxtNombreE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),1).toString());
@@ -181,7 +200,11 @@ public class EncargadoControlador implements ActionListener, MouseListener{
                 logica.jTxtEmailE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),4).toString());
                 logica.jTxtTelCasaE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),5).toString());
                 logica.jTxtTelMovilE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),6).toString());
-                logica.jTxtFechaNacE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),7).toString());
+                //logica.jTxtFechaNacE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),7).toString());
+                
+                Date fechaSelect = Date.valueOf(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(), 7).toString());
+                logica.jDCFechanac.setDate(fechaSelect);
+                
                 logica.jTxtCuiE.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),8).toString());
                 logica.jTxtCodS.setText(logica.jTblEncargado.getValueAt(logica.jTblEncargado.getSelectedRow(),9).toString());
             }
@@ -197,7 +220,11 @@ public class EncargadoControlador implements ActionListener, MouseListener{
             logica.jTxtEmailE.setText(null);
             logica.jTxtTelCasaE.setText(null);
             logica.jTxtTelMovilE.setText(null);
-            logica.jTxtFechaNacE.setText(null);
+            //logica.jTxtFechaNacE.setText(null);
+            
+            Calendar clear = new GregorianCalendar();
+            logica.jDCFechanac.setCalendar(clear);
+            
             logica.jTxtCuiE.setText(null);
             logica.jTxtCodS.setText(null);   
             logica.jTxtCodigoE.requestFocus();

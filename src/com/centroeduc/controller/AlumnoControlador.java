@@ -11,7 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.JFrmAlumno;
@@ -55,6 +58,14 @@ public class AlumnoControlador implements ActionListener, MouseListener {
     }
     public void guardarAlumno() {
         String mensaje = null;
+        
+        String anio = Integer.toString(this.alumno.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.alumno.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.alumno.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+
+        //convirtiendo al formato deseado
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
         dato.setNombre(this.alumno.jTxtNombre.getText());
         dato.setApellido(this.alumno.jTxtApellido.getText());
         dato.setDireccion(this.alumno.jTxtDireccion.getText());
@@ -62,7 +73,8 @@ public class AlumnoControlador implements ActionListener, MouseListener {
         dato.setTelEmergencia(Integer.parseInt(this.alumno.jTxtTelEmergencia.getText()));
         dato.setCodEncargado(this.alumno.jTxtCodEncargado.getText());
         dato.setCodSecretaria(this.alumno.jTxtCodSecretaria.getText());
-        dato.setFechanac(this.alumno.jTxtFechaNac.getText());
+       // dato.setFechanac(this.alumno.jTxtFechaNac.getText());
+        dato.setFechanac(fechaseleccionada);
         dato.setPadecimiento(this.alumno.jTxtAPadecimiento.getText());
         dato.setEstado(1);
         mensaje = dao.ingresarAlum(dato);
@@ -108,6 +120,14 @@ public class AlumnoControlador implements ActionListener, MouseListener {
     }
     public void modificarAlumno(){
         String mensaje = null;
+        
+        String anio = Integer.toString(this.alumno.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.alumno.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.alumno.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+
+        
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
         dato.setCodAlumno(Integer.parseInt(this.alumno.jTxtCodAl.getText()));
         dato.setNombre(this.alumno.jTxtNombre.getText());
         dato.setApellido(this.alumno.jTxtApellido.getText());
@@ -116,7 +136,8 @@ public class AlumnoControlador implements ActionListener, MouseListener {
         dato.setTelEmergencia(Integer.parseInt(this.alumno.jTxtTelEmergencia.getText()));
         dato.setCodEncargado(this.alumno.jTxtCodEncargado.getText());
         dato.setCodSecretaria(this.alumno.jTxtCodSecretaria.getText());
-        dato.setFechanac(this.alumno.jTxtFechaNac.getText());
+       // dato.setFechanac(this.alumno.jTxtFechaNac.getText());
+        dato.setFechanac(fechaseleccionada);
         dato.setPadecimiento(this.alumno.jTxtAPadecimiento.getText());
         
         mensaje = dao.modificarAlumno(dato);
@@ -138,6 +159,7 @@ public class AlumnoControlador implements ActionListener, MouseListener {
     }
 
     public void limpiarControles() {
+        
         alumno.jTxtNombre.setText(null);
         alumno.jTxtApellido.setText(null);
         alumno.jTxtDireccion.setText(null);
@@ -145,7 +167,11 @@ public class AlumnoControlador implements ActionListener, MouseListener {
         alumno.jTxtTelEmergencia.setText(null);
         alumno.jTxtCodEncargado.setText(null);
         alumno.jTxtCodSecretaria.setText(null);
-        alumno.jTxtFechaNac.setText(null);
+        //alumno.jTxtFechaNac.setText(null);
+        
+        Calendar clear = new GregorianCalendar();
+        alumno.jDCFechanac.setCalendar(clear);
+        
         alumno.jTxtAPadecimiento.setText(null);
 
     }
@@ -161,7 +187,11 @@ public class AlumnoControlador implements ActionListener, MouseListener {
             alumno.jTxtTelEmergencia.setText(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 5).toString());
             alumno.jTxtCodEncargado.setText(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 6).toString());
             alumno.jTxtCodSecretaria.setText(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 7).toString());
-            alumno.jTxtFechaNac.setText(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 8).toString());
+           // alumno.jTxtFechaNac.setText(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 8).toString());
+           
+           Date fechaSelect = Date.valueOf(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 8).toString());
+            alumno.jDCFechanac.setDate(fechaSelect);
+            
             alumno.jTxtAPadecimiento.setText(alumno.jTblAlumno.getValueAt(alumno.jTblAlumno.getSelectedRow(), 9).toString());
  
         }

@@ -5,6 +5,9 @@
  */
 package vista;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -69,6 +72,11 @@ public class JFrmCurso extends javax.swing.JInternalFrame {
         jBtnGuardar.setText("Guardar");
 
         jTxtNombre.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtNombreKeyTyped(evt);
+            }
+        });
 
         jTxtInicio.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jTxtInicio.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +93,18 @@ public class JFrmCurso extends javax.swing.JInternalFrame {
                 jTxtJornadaActionPerformed(evt);
             }
         });
+        jTxtJornada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtJornadaKeyTyped(evt);
+            }
+        });
 
         jTxtCupo.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtCupo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtCupoKeyTyped(evt);
+            }
+        });
 
         jBtnModificar.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         jBtnModificar.setText("Modificar");
@@ -198,6 +216,36 @@ public class JFrmCurso extends javax.swing.JInternalFrame {
     private void jTxtJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtJornadaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtJornadaActionPerformed
+
+    private void jTxtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNombreKeyTyped
+       char c = evt.getKeyChar();
+        
+        if ((c<'a'|| c>'z' ) && (c<'A'|| c>'Z' ) && (c!=(char)KeyEvent.VK_BACK_SPACE) && (c!=(char)KeyEvent.VK_SPACE)){            
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "Solo se permiten letras", "validar letras", JOptionPane.INFORMATION_MESSAGE);
+        } 
+
+    }//GEN-LAST:event_jTxtNombreKeyTyped
+
+    private void jTxtJornadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtJornadaKeyTyped
+        char c = evt.getKeyChar();
+        
+        if ((c<'a'|| c>'z' ) && (c<'A'|| c>'Z' ) && (c!=(char)KeyEvent.VK_BACK_SPACE) && (c!=(char)KeyEvent.VK_SPACE)){            
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "Solo se permiten letras", "validar letras", JOptionPane.INFORMATION_MESSAGE);
+        } 
+
+    }//GEN-LAST:event_jTxtJornadaKeyTyped
+
+    private void jTxtCupoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCupoKeyTyped
+        char c = evt.getKeyChar();
+        
+        if ((c<'0'|| c>'9' ) && (c!=(char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se permiten numeros", "validar numeros", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jTxtCupoKeyTyped
 
     /**
      * @param args the command line arguments

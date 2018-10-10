@@ -5,7 +5,9 @@
  */
 package vista;
 
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -96,6 +98,11 @@ public class JFrmAlumnoGrado extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(jTblAlumnGrad);
 
         jTxtCiclo.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtCiclo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtCicloKeyTyped(evt);
+            }
+        });
 
         jCmbxNombre.setFont(new java.awt.Font("Bookman Old Style", 0, 13)); // NOI18N
         jCmbxNombre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -192,6 +199,16 @@ public class JFrmAlumnoGrado extends javax.swing.JInternalFrame {
     private void jCmbxNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbxNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCmbxNombreActionPerformed
+
+    private void jTxtCicloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCicloKeyTyped
+         char c = evt.getKeyChar();
+        
+        if ((c<'0'|| c>'9' ) && (c!=(char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se permiten numeros", "validar numeros", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jTxtCicloKeyTyped
 
     /**
      * @param args the command line arguments

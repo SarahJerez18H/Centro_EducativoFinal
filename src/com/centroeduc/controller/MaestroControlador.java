@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.JFrmMaestro;
@@ -48,7 +51,12 @@ public class MaestroControlador implements ActionListener, MouseListener {
 
     public void guardarMaestro() {
         String mensaje = null;
-
+        
+        String anio = Integer.toString(this.maestro.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.maestro.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.maestro.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
         mae.setCodigo(this.maestro.jTxtCodigo.getText());
         mae.setNombre(this.maestro.jTxtNombre.getText());
         mae.setApellido(this.maestro.jTxtApellido.getText());
@@ -56,7 +64,9 @@ public class MaestroControlador implements ActionListener, MouseListener {
         mae.setEmail(this.maestro.jTxtEmail.getText());
         mae.setTelCasa(Integer.parseInt(this.maestro.jTxtTelCasa.getText()));
         mae.setTelMovil(Integer.parseInt(this.maestro.jTxtTelMovil.getText()));
-        mae.setFechanac(this.maestro.jTxtFechaNac.getText());
+       // mae.setFechanac(this.maestro.jTxtFechaNac.getText());
+        mae.setFechanac(fechaseleccionada);
+        
         mae.setCui(Long.parseLong(this.maestro.jTxtCui.getText()));
         mae.setCodigoA(this.maestro.jTxtCodigoA.getText());
         mae.setPass(this.maestro.jPsfContra.getText());
@@ -71,6 +81,11 @@ public class MaestroControlador implements ActionListener, MouseListener {
 
     public void actualizarMaestro() {
         String mensaje = null;
+        
+        String anio = Integer.toString(this.maestro.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.maestro.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.maestro.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
 
         mae.setNombre(this.maestro.jTxtNombre.getText());
         mae.setApellido(this.maestro.jTxtApellido.getText());
@@ -78,7 +93,9 @@ public class MaestroControlador implements ActionListener, MouseListener {
         mae.setEmail(this.maestro.jTxtEmail.getText());
         mae.setTelCasa(Integer.parseInt(this.maestro.jTxtTelCasa.getText()));
         mae.setTelMovil(Integer.parseInt(this.maestro.jTxtTelMovil.getText()));
-        mae.setFechanac(this.maestro.jTxtFechaNac.getText());
+       // mae.setFechanac(this.maestro.jTxtFechaNac.getText());
+        mae.setFechanac(fechaseleccionada);
+        
         mae.setCui(Long.parseLong(this.maestro.jTxtCui.getText()));
         mae.setCodigoA(this.maestro.jTxtCodigoA.getText());
         mae.setPass(this.maestro.jPsfContra.getText());
@@ -148,6 +165,7 @@ public class MaestroControlador implements ActionListener, MouseListener {
     }
 
     public void limpiarControles() {
+        
         maestro.jTxtCodigo.setText(null);
         maestro.jTxtNombre.setText(null);
         maestro.jTxtApellido.setText(null);
@@ -155,7 +173,11 @@ public class MaestroControlador implements ActionListener, MouseListener {
         maestro.jTxtEmail.setText(null);
         maestro.jTxtTelCasa.setText(null);
         maestro.jTxtTelMovil.setText(null);
-        maestro.jTxtFechaNac.setText(null);
+        //maestro.jTxtFechaNac.setText(null);
+        
+        Calendar clear = new GregorianCalendar();
+        maestro.jDCFechanac.setCalendar(clear);
+        
         maestro.jTxtCui.setText(null);
         maestro.jPsfContra.setText(null);
         maestro.jTxtCodigoA.setText(null);
@@ -173,7 +195,11 @@ public class MaestroControlador implements ActionListener, MouseListener {
             maestro.jTxtEmail.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 4).toString());
             maestro.jTxtTelCasa.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 5).toString());
             maestro.jTxtTelMovil.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 6).toString());
-            maestro.jTxtFechaNac.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 7).toString());
+          //  maestro.jTxtFechaNac.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 7).toString());
+          
+           Date fechaSelect = Date.valueOf(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 7).toString());
+            maestro.jDCFechanac.setDate(fechaSelect);
+             
             maestro.jTxtCui.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 8).toString());
             maestro.jPsfContra.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 9).toString());
             maestro.jTxtCodigoA.setText(maestro.jTblMaestro.getValueAt(maestro.jTblMaestro.getSelectedRow(), 10).toString());

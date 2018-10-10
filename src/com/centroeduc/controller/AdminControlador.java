@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.JFrmAdmin;
@@ -87,6 +90,14 @@ public class AdminControlador implements ActionListener, MouseListener {
     public void guardarAdmin() {
         String mensaje=null;
         
+        //obtener los valores del calendario
+        String anio = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+
+        //convirtiendo al formato deseado
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
         datos.setCodigo(this.logica.jTxtCodigo.getText());
         datos.setNombre(this.logica.jTxtNombre.getText());
         datos.setApellido(this.logica.jTxtApellido.getText());
@@ -94,7 +105,8 @@ public class AdminControlador implements ActionListener, MouseListener {
         datos.setEmail(this.logica.jTxtEmail.getText());
         datos.setTelCasa(Integer.parseInt(this.logica.jTxtTelCasa.getText()));
         datos.setTelMovil(Integer.parseInt(this.logica.jTxtTelMovil.getText()));
-        datos.setFechanac(this.logica.jTxtFechaNac.getText());
+        //datos.setFechanac(this.logica.jTxtFechaNac.getText());
+        datos.setFechanac(fechaseleccionada);
         datos.setCui(Long.parseLong(this.logica.jTxtCui.getText()));
         datos.setPass(this.logica.jPsfContra.getText());
         datos.setEstado(1);
@@ -110,13 +122,21 @@ public class AdminControlador implements ActionListener, MouseListener {
         
         String mensaje = null;
         
+        String anio = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.logica.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));
+
+        //convirtiendo al formato deseado
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
         datos.setNombre(this.logica.jTxtNombre.getText());
         datos.setApellido(this.logica.jTxtApellido.getText());
         datos.setDireccion(this.logica.jTxtDireccion.getText());
         datos.setEmail(this.logica.jTxtEmail.getText());
         datos.setTelCasa(Integer.parseInt(this.logica.jTxtTelCasa.getText()));
         datos.setTelMovil(Integer.parseInt(this.logica.jTxtTelMovil.getText()));
-        datos.setFechanac(this.logica.jTxtFechaNac.getText());
+        //datos.setFechanac(this.logica.jTxtFechaNac.getText());
+        datos.setFechanac(fechaseleccionada);
         datos.setCui(Long.parseLong(this.logica.jTxtCui.getText()));
         datos.setPass(this.logica.jPsfContra.getText());
         datos.setCodigo(this.logica.jTxtCodigo.getText());
@@ -182,7 +202,11 @@ public class AdminControlador implements ActionListener, MouseListener {
              logica.jTxtEmail.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(),4).toString());
              logica.jTxtTelCasa.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 5).toString());
              logica.jTxtTelMovil.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 6).toString());
-             logica.jTxtFechaNac.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 7).toString());
+            // logica.jTxtFechaNac.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 7).toString());
+            
+            Date fechaSelect = Date.valueOf(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 7).toString());
+            logica.jDCFechanac.setDate(fechaSelect);
+            
              logica.jTxtCui.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 8).toString());
              logica.jPsfContra.setText(logica.jTblAdmin.getValueAt(logica.jTblAdmin.getSelectedRow(), 9).toString());
 
@@ -199,7 +223,11 @@ public class AdminControlador implements ActionListener, MouseListener {
         logica.jTxtEmail.setText(null);
         logica.jTxtTelCasa.setText(null);
         logica.jTxtTelMovil.setText(null);
-        logica.jTxtFechaNac.setText(null);
+        //logica.jTxtFechaNac.setText(null);
+        
+         Calendar clear = new GregorianCalendar();
+        logica.jDCFechanac.setCalendar(clear);
+        
         logica.jTxtCui.setText(null);
         logica.jPsfContra.setText(null);
         logica.jTxtCodigo.requestFocus();

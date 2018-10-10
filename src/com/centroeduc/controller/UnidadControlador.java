@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.JFrmUnidad;
@@ -50,11 +53,23 @@ public class UnidadControlador implements ActionListener, MouseListener {
 
     public void guardarUnidad() {
         String mensaje = null;
+        
+        String anio = Integer.toString(this.unidad.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.unidad.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.unidad.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));                 
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
+        String anio2 = Integer.toString(this.unidad.jDCFechanac1.getCalendar().get(java.util.Calendar.YEAR));
+        String mes2 = Integer.toString(this.unidad.jDCFechanac1.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia2 = Integer.toString(this.unidad.jDCFechanac1.getCalendar().get(java.util.Calendar.DATE));                 
+        String fechaseleccionada2 = anio2 + "/" + mes2 + "/" + dia2;
 
         uni.setNombre(this.unidad.jTxtNombre.getText());
         uni.setDescripcion(this.unidad.jTxtDescripcion.getText());
-        uni.setFechaIni(this.unidad.jTxtFechaInicio.getText());
-        uni.setFechaFin(this.unidad.jTxtFechaFin.getText());
+        //uni.setFechaIni(this.unidad.jTxtFechaInicio.getText());
+        uni.setFechaIni(fechaseleccionada);
+        uni.setFechaFin(fechaseleccionada2);
+        //uni.setFechaFin(this.unidad.jTxtFechaFin.getText());
         uni.setEstado(1);
         mensaje = dao.ingresoUnidad(uni);
 
@@ -65,11 +80,21 @@ public class UnidadControlador implements ActionListener, MouseListener {
 
     public void editarUnidad() {
         String mensaje = null;
+        
+        String anio = Integer.toString(this.unidad.jDCFechanac.getCalendar().get(java.util.Calendar.YEAR));
+        String mes = Integer.toString(this.unidad.jDCFechanac.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia = Integer.toString(this.unidad.jDCFechanac.getCalendar().get(java.util.Calendar.DATE));                 
+        String fechaseleccionada = anio + "/" + mes + "/" + dia;
+        
+        String anio2 = Integer.toString(this.unidad.jDCFechanac1.getCalendar().get(java.util.Calendar.YEAR));
+        String mes2 = Integer.toString(this.unidad.jDCFechanac1.getCalendar().get(java.util.Calendar.MONTH) + 1);
+        String dia2 = Integer.toString(this.unidad.jDCFechanac1.getCalendar().get(java.util.Calendar.DATE));                 
+        String fechaseleccionada2 = anio2 + "/" + mes2 + "/" + dia2;
 
         uni.setNombre(this.unidad.jTxtNombre.getText());
         uni.setDescripcion(this.unidad.jTxtDescripcion.getText());
-        uni.setFechaIni(this.unidad.jTxtFechaInicio.getText());
-        uni.setFechaFin(this.unidad.jTxtFechaFin.getText());
+        uni.setFechaIni(fechaseleccionada);
+        uni.setFechaFin(fechaseleccionada2);
         uni.setCodigo(Integer.parseInt(this.unidad.jTxtCodigo.getText()));
         mensaje = dao.editarUnidad(uni);
 
@@ -115,11 +140,19 @@ public class UnidadControlador implements ActionListener, MouseListener {
     }
 
     public void limpiarControles() {
+         Calendar clear = new GregorianCalendar();
+         unidad.jDCFechanac.setCalendar(clear);
+         
+          Calendar clear2 = new GregorianCalendar();
+         unidad.jDCFechanac1.setCalendar(clear2);
+         
+      
+        
         unidad.jTxtCodigo.setText(null);
         unidad.jTxtNombre.setText(null);
         unidad.jTxtDescripcion.setText(null);
-        unidad.jTxtFechaInicio.setText(null);
-        unidad.jTxtFechaFin.setText(null);
+        //unidad.jTxtFechaInicio.setText(null);
+       // unidad.jTxtFechaFin.setText(null);
     }
 
     @Override
@@ -129,8 +162,18 @@ public class UnidadControlador implements ActionListener, MouseListener {
             unidad.jTxtCodigo.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 0).toString());
             unidad.jTxtNombre.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 1).toString());
             unidad.jTxtDescripcion.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 2).toString());
-            unidad.jTxtFechaInicio.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 3).toString());
-            unidad.jTxtFechaFin.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 4).toString());
+//            unidad.jTxtFechaInicio.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 3).toString());
+//            unidad.jTxtFechaFin.setText(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 4).toString());
+            
+            Date fechaSelect = Date.valueOf(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 3).toString());
+            unidad.jDCFechanac.setDate(fechaSelect);
+            
+            Date fechaSelect1 = Date.valueOf(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 4).toString());
+            unidad.jDCFechanac1.setDate(fechaSelect1);
+            
+            
+//            Date fechaSelect = Date.valueOf(unidad.jTblUnidad.getValueAt(unidad.jTblUnidad.getSelectedRow(), 4).toString());
+//            unidad.jDCFechanac.setDate(fechaSelect);
 
         }
     }
