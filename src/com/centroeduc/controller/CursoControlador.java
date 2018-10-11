@@ -100,13 +100,24 @@ public class CursoControlador  implements ActionListener,MouseListener{
         dato.setHfin(this.curso.jTxtFin.getText());
         dato.setJornada(this.curso.jTxtJornada.getText());
         dato.setCupo(Integer.parseInt(this.curso.jTxtCupo.getText()));
-        
+        dato.setCod(Integer.parseInt(this.curso.jLblCodigo.getText()));
         mensaje= dao.updateCourse(dato);
         JOptionPane.showMessageDialog(null, mensaje);
         listaCurso();
         limpiarControles();
          
      }
+     public void cambiarEstado() {
+        String mensaje = null;
+
+        dato.setNombre(this.curso.jTxtNombre.getText());
+        mensaje = dao.changeState(dato);
+        
+        JOptionPane.showMessageDialog(null, mensaje);
+        limpiarControles();
+        listaCurso();
+
+    }
        public void limpiarControles() {
         curso.jTxtNombre.setText(null);
         curso.jTxtInicio.setText(null);

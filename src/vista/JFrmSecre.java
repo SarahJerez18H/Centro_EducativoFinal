@@ -5,6 +5,11 @@
  */
 package vista;
 
+import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author javam2018
@@ -53,7 +58,7 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jBtnActualizarS = new javax.swing.JButton();
         jBtnEliminarS = new javax.swing.JButton();
         jTxtTelCasaS = new javax.swing.JTextField();
-        jTxtEmailS = new javax.swing.JTextField();
+        jTxtEmail = new javax.swing.JTextField();
         jDCFechanac = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
@@ -78,6 +83,11 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jLblNombre.setText("Nombre:");
 
         jTxtNombreS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtNombreS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtNombreSKeyTyped(evt);
+            }
+        });
 
         jLblApellido.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLblApellido.setText("Apellido:");
@@ -86,6 +96,11 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jTxtApellidoS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtApellidoSActionPerformed(evt);
+            }
+        });
+        jTxtApellidoS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtApellidoSKeyTyped(evt);
             }
         });
 
@@ -109,11 +124,26 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jLblTelMovil.setText("Tel. Movil:");
 
         jTxtTelMovilS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtTelMovilS.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtTelMovilSFocusLost(evt);
+            }
+        });
+        jTxtTelMovilS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtTelMovilSKeyTyped(evt);
+            }
+        });
 
         jLblFechaNac.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLblFechaNac.setText("Fecha Nac.");
 
         jTxtCuiS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtCuiS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtCuiSKeyTyped(evt);
+            }
+        });
 
         jLblCui.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLblCui.setText("Cui:");
@@ -164,11 +194,21 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         jBtnEliminarS.setText("Estado");
 
         jTxtTelCasaS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtTelCasaS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtTelCasaSKeyTyped(evt);
+            }
+        });
 
-        jTxtEmailS.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jTxtEmailS.addActionListener(new java.awt.event.ActionListener() {
+        jTxtEmail.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        jTxtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTxtEmailFocusLost(evt);
+            }
+        });
+        jTxtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtEmailSActionPerformed(evt);
+                jTxtEmailActionPerformed(evt);
             }
         });
 
@@ -194,12 +234,12 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLblEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTxtEmailS, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLblDireccion)
                             .addComponent(jLblCodigo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTxtCodigoS)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -259,7 +299,7 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
                     .addComponent(jTxtDireccionS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtEmailS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblEmail))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -328,13 +368,94 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtApellidoSActionPerformed
 
-    private void jTxtEmailSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtEmailSActionPerformed
+    private void jTxtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtEmailSActionPerformed
+    }//GEN-LAST:event_jTxtEmailActionPerformed
 
     private void jBtnActualizarSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnActualizarSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnActualizarSActionPerformed
+
+    private void jTxtNombreSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtNombreSKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != (char) KeyEvent.VK_BACK_SPACE) && (c != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras", "validar letras", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jTxtNombreSKeyTyped
+
+    private void jTxtApellidoSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtApellidoSKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c != (char) KeyEvent.VK_BACK_SPACE) && (c != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo se permiten letras", "validar letras", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jTxtApellidoSKeyTyped
+    public boolean isemail(String correo) {
+
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[\\w\\-\\_\\+]+(\\.[\\w\\-\\_]+)*@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$");
+        mat = pat.matcher(correo);
+
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private void jTxtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtEmailFocusLost
+        // TODO add your handling code here:
+         if (isemail(jTxtEmail.getText())) {
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Email incorrecto", "Intente Nuevamente", JOptionPane.INFORMATION_MESSAGE);
+            jTxtEmail.requestFocus();
+        }
+    }//GEN-LAST:event_jTxtEmailFocusLost
+
+    private void jTxtTelCasaSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtTelCasaSKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        
+        if ((c<'0'|| c>'9' ) && (c!=(char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se permiten numeros", "validar numeros", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jTxtTelCasaSKeyTyped
+
+    private void jTxtTelMovilSFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtTelMovilSFocusLost
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_jTxtTelMovilSFocusLost
+
+    private void jTxtTelMovilSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtTelMovilSKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if ((c<'0'|| c>'9' ) && (c!=(char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se permiten numeros", "validar numeros", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jTxtTelMovilSKeyTyped
+
+    private void jTxtCuiSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtCuiSKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if ((c<'0'|| c>'9' ) && (c!=(char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+             JOptionPane.showMessageDialog(null, "Solo se permiten numeros", "validar numeros", JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_jTxtCuiSKeyTyped
 
     /**
      * @param args the command line arguments
@@ -411,7 +532,7 @@ public class JFrmSecre extends javax.swing.JInternalFrame {
     public javax.swing.JTextField jTxtCodigoS;
     public javax.swing.JTextField jTxtCuiS;
     public javax.swing.JTextField jTxtDireccionS;
-    public javax.swing.JTextField jTxtEmailS;
+    public javax.swing.JTextField jTxtEmail;
     public javax.swing.JTextField jTxtNombreS;
     public javax.swing.JTextField jTxtTelCasaS;
     public javax.swing.JTextField jTxtTelMovilS;

@@ -78,7 +78,7 @@ public class AlumnoDAO extends Conexion {
 
         try {
             this.Conectar();
-            sql = "update alumno set nombre=?, apellido=?, email=?, direccion=?, tel_emergencia=?, fechanac=?, padecimiento=?, estado=? where cod_alumno=?";
+            sql = "update alumno set nombre=?, apellido=?, email=?, direccion=?, tel_emergencia=?, fechanac=?, padecimiento=? where cod_alumno=?";
             ejecutar = this.getMiconexion().prepareStatement(sql);
             ejecutar.setString(1, dato.getNombre());
             ejecutar.setString(2, dato.getApellido());
@@ -87,8 +87,7 @@ public class AlumnoDAO extends Conexion {
             ejecutar.setInt(5, dato.getTelEmergencia());
             ejecutar.setString(6, dato.getFechanac());
             ejecutar.setString(7, dato.getPadecimiento());
-            ejecutar.setInt(8, dato.getEstado());
-            ejecutar.setString(9, dato.getCodigo());
+            ejecutar.setString(8, dato.getCodigo());
 
             ejecutar.executeUpdate();
             respuesta = "Datos actualizados correctamente";

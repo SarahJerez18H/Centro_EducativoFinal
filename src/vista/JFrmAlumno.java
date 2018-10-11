@@ -126,7 +126,7 @@ public class JFrmAlumno extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Bookman Old Style", 0, 20)); // NOI18N
         jLabel10.setText("Cod Secretaria:");
 
-        jTxtEmail.setFont(new java.awt.Font("Bookman Old Style", 0, 13)); // NOI18N
+        jTxtEmail.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jTxtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTxtEmailFocusLost(evt);
@@ -150,7 +150,7 @@ public class JFrmAlumno extends javax.swing.JInternalFrame {
         jTxtCodSecretaria.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
 
         jTxtAPadecimiento.setColumns(20);
-        jTxtAPadecimiento.setFont(new java.awt.Font("Bookman Old Style", 0, 13)); // NOI18N
+        jTxtAPadecimiento.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jTxtAPadecimiento.setRows(5);
         jScrollPane1.setViewportView(jTxtAPadecimiento);
 
@@ -235,10 +235,8 @@ public class JFrmAlumno extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel8)))
                                     .addGap(54, 54, 54)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(jDCFechanac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(jTxtCodEncargado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jTxtCodEncargado, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                                        .addComponent(jDCFechanac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jTxtCodSecretaria, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -250,7 +248,7 @@ public class JFrmAlumno extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

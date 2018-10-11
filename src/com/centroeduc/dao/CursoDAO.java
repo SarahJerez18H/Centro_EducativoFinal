@@ -80,7 +80,7 @@ public class CursoDAO extends Conexion {
         answer = null;
         try {
             this.Conectar();
-            sql = "update curso set nombre=?, hinicio=?, hfin=?, jornada=?, cupo=? where cod_curso=?";
+            sql = "update curso set nombre=?, hinicio=?, hfin=?, jornada=?, cupo=? where nombre=?";
             run = this.getMiconexion().prepareStatement(sql);
             run.setString(1, courso.getNombre());
             run.setString(2, courso.getHinicio());
@@ -122,14 +122,14 @@ public class CursoDAO extends Conexion {
     }
     
     //cambiar estado
-    public String changeState(int codigo) {
+    public String changeState(Curso curso) {
         answer = null;
         try {
             this.Conectar();
-            sql = "update curso set estado=? where cod_curso=?";
+            sql = "update curso set estado=? where nombre=?";
             run = this.getMiconexion().prepareStatement(sql);
             run.setInt(1, 2);
-            run.setInt(2, codigo);
+            run.setString(2, curso.getNombre());
             run.executeUpdate();
             answer = "Eliminado con Exito";
 
