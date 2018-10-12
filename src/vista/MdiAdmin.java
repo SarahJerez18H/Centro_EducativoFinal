@@ -19,7 +19,18 @@ import com.centroeduc.controller.NotasControlador;
 import com.centroeduc.controller.SeccionControlador;
 import com.centroeduc.controller.SecreControlador;
 import com.centroeduc.controller.UnidadControlador;
+import com.centroeduc.dao.Conexion;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
 /**
@@ -58,6 +69,8 @@ public class MdiAdmin extends javax.swing.JFrame {
         exitMenuItem3 = new javax.swing.JMenuItem();
         jMSecretaria = new javax.swing.JMenuItem();
         jMEncargado = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMReportNotas = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
@@ -172,6 +185,18 @@ public class MdiAdmin extends javax.swing.JFrame {
         fileMenu.add(jMEncargado);
 
         menuBar.add(fileMenu);
+
+        jMenu1.setText("Reportes");
+
+        jMReportNotas.setText("Notas");
+        jMReportNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMReportNotasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMReportNotas);
+
+        menuBar.add(jMenu1);
 
         editMenu.setMnemonic('e');
         editMenu.setText("Edit");
@@ -308,6 +333,31 @@ public class MdiAdmin extends javax.swing.JFrame {
         EncargadoControlador controlador = new EncargadoControlador(encargado);
     }//GEN-LAST:event_jMEncargadoActionPerformed
 
+    private void jMReportNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMReportNotasActionPerformed
+        // TODO add your handling code here:
+        try {
+            //establecer conexion con la base de datos
+            Conexion conexion2 = new Conexion();
+            conexion2.Conectar();
+            Connection conn = conexion2.getMiconexion();
+
+            //establecer el reporte a visualizar
+            JasperReport reporte = null;
+            String ubicacionReporte = "src\\reportenotas\\reporteNotas.jasper";
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(ubicacionReporte);
+
+            JasperPrint impresion = JasperFillManager.fillReport(reporte, null, conn);
+            JasperViewer vista = new JasperViewer(impresion, false);
+
+            vista.setVisible(true);
+            vista.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, "Error en conexión de reporte" + ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error en conexión" + ex);
+        }
+    }//GEN-LAST:event_jMReportNotasActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -374,7 +424,9 @@ public class MdiAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem jCbMaestro;
     private javax.swing.JMenuItem jMEncargado;
+    private javax.swing.JMenuItem jMReportNotas;
     private javax.swing.JMenuItem jMSecretaria;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
